@@ -21,7 +21,7 @@ func AuthenticateUser(database *gorm.DB, username, password string) (bool, error
 	}
 
 	// Сравниваем введённый пароль с хешем, сохранённым в базе
-	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+	err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password))
 	if err != nil {
 		return false, nil // Если пароли не совпадают, возвращаем false
 	}
